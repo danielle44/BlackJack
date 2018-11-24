@@ -1,0 +1,9 @@
+<div class="player" [ngClass]="player.isDealer ? 'dealer': ''">
+  <div >{{ player.name }}</div>
+  <div class="money">{{ player.moneyInDollars | currency: 'USD' }}</div>
+  <div class="cards">
+    <div *ngFor="let card of player.cards">
+      <app-card [card]="card"></app-card>
+    </div>
+  </div>
+</div>
