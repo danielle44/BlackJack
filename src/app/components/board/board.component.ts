@@ -12,9 +12,10 @@ export class BoardComponent implements OnInit {
   players: Player[];
 
   constructor() {
-    this.players = [];
-    this.players.push(new Dealer());
-    this.players.push(new Player('Player1'));
+    this.players = [
+      new Dealer(),
+      new Player('Player1')
+    ];
   }
 
   ngOnInit() {
