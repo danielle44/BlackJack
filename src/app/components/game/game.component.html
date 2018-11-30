@@ -1,4 +1,9 @@
 <div class="wrapper">
   <app-game-board [players]="players" [dealer]="dealer" class="panel left-panel"></app-game-board>
-  <app-control-panel class="panel right-panel"></app-control-panel>
+
+  <app-control-panel
+    [players]="players"
+    class="panel right-panel"
+    (startGame)="startGame()">
+  </app-control-panel>
 </div>

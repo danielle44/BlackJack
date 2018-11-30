@@ -1,13 +1,19 @@
 <div id="control-panel">
   <div id="start-game">
-    <button (click)="onStartGame()">Start Game</button>
+    <button (click)="onStartGame()" [ngClass]="{'disabled': !shouldBeEnabled('startGame')}">Start Game</button>
   </div>
 
-  <div id="hit">
-    <button (click)="onHit()">Hit</button>
+  <div class="players-controls">
+    <div class="player-control" *ngFor="let player of players">
+      <div class="title">{{player.name}}:</div>
+      <div id="hit">
+        <button (click)="onHit(player)" [ngClass]="{'disabled': !shouldBeEnabled('hit')}">Hit</button>
+      </div>
+
+      <div id="stand">
+        <button (click)="onStand(player)" [ngClass]="{'disabled': !shouldBeEnabled('stand')}">Stand</button>
+      </div>
+    </div>
   </div>
 
-  <div id="stand">
-    <button (click)="onStand()">Stand</button>
-  </div>
 </div>
