@@ -1,7 +1,5 @@
-<div class="board">
-  <app-player [player]="dealer"></app-player>
-
-  <div *ngFor="let player of players">
-    <app-player [player]="player"></app-player>
-  </div>
+<div class="wrapper">
+  <app-control-panel class="panel left-panel"></app-control-panel>
+  <app-game class="panel center-panel"></app-game>
+  <app-updates-panel class="panel right-panel"></app-updates-panel>
 </div>
