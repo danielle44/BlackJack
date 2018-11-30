@@ -1,19 +1,37 @@
 import { Injectable } from '@angular/core';
 import {NotificationsProviderService} from '../notificationsProvider/notifications-provider.service';
 import {Player} from '../../models/player.model';
+import {Deck} from '../../models/deck.model';
+import {DeckProviderService} from '../deck/deck-provider.service';
+import {CardsDealerService} from './cards-dealer.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameStarterService {
 
-  constructor(private notificationsProvider: NotificationsProviderService) { }
+  players: Player[];
+  dealer: Player;
+  deck: Deck;
 
-  startGame(players: Player[]) {
+  constructor(
+    private notificationsProvider: NotificationsProviderService,
+    private deckProvider: DeckProviderService,
+    private cardsDealer: CardsDealerService) { }
+
+  startGame(dealer: Player, players: Player[]) {
+    this.players = players;
+    this.dealer = dealer;
+    this.deck = this.deckProvider.getDeck();
+
+    this.notifyGameStarted();
+    this.cardsDealer.dealCards(this.dealer, this.players, this.deck);
+  }
+
+  notifyGameStarted() {
     this.notificationsProvider.notifyInfo('Game has been started');
 
-    const regularPlayers = players.filter(player => !player.isDealer);
-    regularPlayers.forEach(player => {
+    this.players.forEach(player => {
       this.notificationsProvider.notifyInfo(`${player.name} is on the game`);
     });
   }

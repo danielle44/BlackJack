@@ -1,0 +1,11 @@
+.card {
+  border: 2px solid black;
+
+  &.open {
+    background-color: azure;
+  }
+
+  &.closed {
+    background-color: black;
+  }
+}

@@ -11,16 +11,18 @@ import {GameStarterService} from '../../services/game/game-starter.service';
 export class BoardComponent implements OnInit {
 
   players: Player[];
+  dealer: Player;
 
   constructor(private game: GameStarterService) {
     this.players = [
-      new Dealer(),
       new Player('Player1')
     ];
+
+    this.dealer = new Dealer();
   }
 
   ngOnInit() {
-    this.game.startGame(this.players);
+    this.game.startGame(this.dealer, this.players);
   }
 
 }

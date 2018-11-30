@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterContentChecked, Component, OnInit} from '@angular/core';
 import {Notification} from '../../models/notification.model';
 import {NotificationsProviderService} from '../../services/notificationsProvider/notifications-provider.service';
 
@@ -7,19 +7,20 @@ import {NotificationsProviderService} from '../../services/notificationsProvider
   templateUrl: './updates-panel.component.html',
   styleUrls: ['./updates-panel.component.scss']
 })
-export class UpdatesPanelComponent implements OnInit {
+export class UpdatesPanelComponent implements AfterContentChecked {
 
   notifications: Notification[];
 
   constructor(private notificationsProvider: NotificationsProviderService) {
-    this.notifications = notificationsProvider.getNotifications();
+    this.notifications = [];
   }
 
   getTime() {
     return Date.now();
   }
 
-  ngOnInit() {
+  ngAfterContentChecked() {
+    this.notifications = this.notificationsProvider.getNotifications();
   }
 
 }
