@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
-import {UpdatesProviderService} from '../updatesList/updates-provider.service';
+import {NotificationsProviderService} from '../notificationsProvider/notifications-provider.service';
+import {Player} from '../../models/player.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GameStarterService {
 
-  constructor(private updatesProvider: UpdatesProviderService) { }
+  constructor(private notificationsProvider: NotificationsProviderService) { }
 
-  startGame(players) {
-    console.log('game has been started');
-    this.updatesProvider.addInfo('Game has been started');
+  startGame(players: Player[]) {
+    this.notificationsProvider.notifyInfo('Game has been started');
+
+    const regularPlayers = players.filter(player => !player.isDealer);
+    regularPlayers.forEach(player => {
+      this.notificationsProvider.notifyInfo(`${player.name} is on the game`);
+    });
   }
 }

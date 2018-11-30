@@ -1,9 +1,9 @@
 <div class="update-panel">
   <h1 class="title">Game Updates:</h1>
 
-  <div *ngFor="let update of updates">
+  <div *ngFor="let notification of notifications">
     <div class="update">
-      <span class="time">{{getTime() | date:'HH:mm:ss'}}</span><span class="text">{{update.text}}</span>
+      <span class="time">{{getTime() | date:'HH:mm:ss'}}</span><span class="text">{{notification.text}}</span>
     </div>
   </div>
 

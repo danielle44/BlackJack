@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Update} from '../../models/update.model';
-import {UpdatesProviderService} from '../../services/updatesList/updates-provider.service';
+import {Notification} from '../../models/notification.model';
+import {NotificationsProviderService} from '../../services/notificationsProvider/notifications-provider.service';
 
 @Component({
   selector: 'app-updates-panel',
@@ -9,10 +9,10 @@ import {UpdatesProviderService} from '../../services/updatesList/updates-provide
 })
 export class UpdatesPanelComponent implements OnInit {
 
-  updates: Update[];
+  notifications: Notification[];
 
-  constructor(private updatesProvider: UpdatesProviderService) {
-    this.updates = updatesProvider.getUpdates();
+  constructor(private notificationsProvider: NotificationsProviderService) {
+    this.notifications = notificationsProvider.getNotifications();
   }
 
   getTime() {
