@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Player} from '../../models/player.model';
 import {Dealer} from '../../models/dealer.model';
+import {GameStarterService} from '../../services/game/game-starter.service';
 
 @Component({
   selector: 'app-board',
@@ -11,7 +12,7 @@ export class BoardComponent implements OnInit {
 
   players: Player[];
 
-  constructor() {
+  constructor(private game: GameStarterService) {
     this.players = [
       new Dealer(),
       new Player('Player1')
@@ -19,6 +20,7 @@ export class BoardComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.game.startGame(this.players);
   }
 
 }

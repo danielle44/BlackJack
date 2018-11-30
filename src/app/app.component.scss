@@ -1,0 +1,11 @@
+.wrapper {
+  display: flex;
+}
+
+.left-panel {
+  flex: 0 0 65%;
+}
+
+.right-panel {
+  flex: 1;
+}

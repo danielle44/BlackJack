@@ -8,7 +8,7 @@ export class Deck {
   }
 
   getCard(): Card {
-    if (!this.cards.length) {
+    if (!this.getSize()) {
       throw Error('Deck is empty');
     }
 
