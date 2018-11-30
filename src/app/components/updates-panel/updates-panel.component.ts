@@ -15,10 +15,6 @@ export class UpdatesPanelComponent implements AfterContentChecked {
     this.notifications = [];
   }
 
-  getTime() {
-    return Date.now();
-  }
-
   ngAfterContentChecked() {
     this.notifications = this.notificationsProvider.getNotifications();
   }

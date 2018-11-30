@@ -21,7 +21,7 @@ export class NotificationsProviderService {
   }
 
   notify({ text, type }) {
-    this.notifications.push({ text, type });
+    this.notifications.push({ text, type, time: Date.now() });
   }
 
   getNotifications() {

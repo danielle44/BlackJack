@@ -3,7 +3,7 @@
 
   <div *ngFor="let notification of notifications">
     <div class="update">
-      <span class="time">{{getTime() | date:'HH:mm:ss'}}</span><span class="text">{{notification.text}}</span>
+      <span class="time">{{notification.time | date:'HH:mm:ss'}}</span><span class="text">{{notification.text}}</span>
     </div>
   </div>
 
