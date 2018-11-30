@@ -33,12 +33,10 @@ export class GameStarterService {
     this.notifyGameStarted();
     this.cardsDealer.dealCards(this.dealer, this.players, this.deck);
 
-    this.gameStatusProvider.setStatus(GameStatus.Ready);
+    this.gameStatusProvider.setStatus(GameStatus['On Going']);
   }
 
   notifyGameStarted() {
-    this.notificationsProvider.notifyInfo('Game has been started');
-
     this.players.forEach(player => {
       this.notificationsProvider.notifyInfo(`${player.name} is on the game`);
     });

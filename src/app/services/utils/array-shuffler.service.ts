@@ -8,6 +8,16 @@ export class ArrayShufflerService {
   constructor() { }
 
   shuffle(sourceArray) {
+    const times = 10;
+
+    for (let i = 0; i < times; i++) {
+      sourceArray = this.innerShuffle(sourceArray);
+    }
+
+    return sourceArray;
+  }
+
+  private innerShuffle(sourceArray) {
     const array = sourceArray.slice(0);
     let counter = array.length;
     let index, temp;
