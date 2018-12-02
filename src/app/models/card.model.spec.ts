@@ -4,31 +4,20 @@ import {Suit} from './suit.enum';
 
 describe('Card Class', () => {
 
-  describe('#getValues', () => {
+  describe('#isAce', () => {
 
-    it('should return correct values for Ace', () => {
+    it('should return true for Ace', () => {
       const aceCard = new Card(Rank.Ace, Suit.Diamonds);
-      expect(aceCard.getValues()).toEqual([1, 11]);
+      expect(aceCard.isAce()).toBeTruthy();
     });
 
-    it('should return correct values for Jack', () => {
+    it('should return false for Jack', () => {
       const jackCard = new Card(Rank.Jack, Suit.Diamonds);
-      expect(jackCard.getValues()).toEqual([10]);
+      expect(jackCard.isAce()).toBeFalsy();
     });
-
-    it('should return correct values for Queen', () => {
-      const queenCard = new Card(Rank.Queen, Suit.Diamonds);
-      expect(queenCard.getValues()).toEqual([10]);
-    });
-
-    it('should return correct values for King', () => {
-      const kingCard = new Card(Rank.King, Suit.Diamonds);
-      expect(kingCard.getValues()).toEqual([10]);
-    });
-
-    it('should return correct values for Number cards', () => {
+    it('should return false for Number cards', () => {
       const fiveCard = new Card(Rank.Five, Suit.Diamonds);
-      expect(fiveCard.getValues()).toEqual([5]);
+      expect(fiveCard.isAce()).toBeFalsy();
     });
   });
 });

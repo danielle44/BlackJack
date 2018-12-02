@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import {Card} from '../../models/card.model';
-import {Player} from '../../models/player.model';
-import {Deck} from '../../models/deck.model';
+import {Card} from '../../../models/card.model';
+import {Player} from '../../../models/player.model';
+import {Deck} from '../../../models/deck.model';
 
 @Injectable({
   providedIn: 'root'

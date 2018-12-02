@@ -3,7 +3,7 @@ import {NotificationsProviderService} from '../notificationsProvider/notificatio
 import {Player} from '../../models/player.model';
 import {Deck} from '../../models/deck.model';
 import {DeckProviderService} from '../deck/deck-provider.service';
-import {CardsDealerService} from './cards-dealer.service';
+import {CardsDealerService} from './cardsDealer/cards-dealer.service';
 import {GameStatusProviderService} from './game-status-provider.service';
 import {GameStatus} from '../../models/game-status.enum';
 

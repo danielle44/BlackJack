@@ -32,7 +32,7 @@ describe('DeckProviderService', () => {
   });
 
   describe('#getDeck', () => {
-    fit('should return a shuffled deck that contains all the cards', () => {
+    it('should return a shuffled deck that contains all the cards', () => {
       deck = service.getDeck();
       expect(deck.getSize()).toEqual(fakeCardsArray.length);
 
