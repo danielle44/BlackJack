@@ -4,6 +4,9 @@
   <app-control-panel
     [players]="players"
     class="panel right-panel"
-    (startGame)="startGame()">
+    (startGame)="startGame()"
+    (hit)="hit($event)"
+    (stand)="stand($event)"
+  >
   </app-control-panel>
 </div>

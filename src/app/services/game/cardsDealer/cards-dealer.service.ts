@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Card} from '../../../models/card.model';
 import {Player} from '../../../models/player.model';
 import {Deck} from '../../../models/deck.model';
+import {Dealer} from '../../../models/dealer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ export class CardsDealerService {
 
   constructor() { }
 
-  dealCards(dealer: Player, players: Player[], deck: Deck) {
+  dealCards(dealer: Dealer, players: Player[], deck: Deck) {
     const numOfCards = 2;
     let isLastTime = false;
 
@@ -32,6 +33,10 @@ export class CardsDealerService {
   }
 
   private dealCardToDealer(deck, dealer, isCardOpen: boolean = true) {
+    if (!isCardOpen) {
+      return;
+    }
+
     const card = deck.getCard();
     card.isOpen = isCardOpen;
     dealer.cards.push(card);

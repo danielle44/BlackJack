@@ -20,17 +20,21 @@ export class HandCalcService {
     return this.calcHandScore(hand) > 21;
   }
 
-  compareHands(dealerHand: Card[], playerHand: Card[]): HandsComparisonValues {
+  is17OrMore(hand: Card[]): boolean {
+    return this.calcHandScore(hand) >= 17;
+  }
+
+  compareHands(dealerHand: Card[], playerHand: Card[]): HandsComparisonValue {
     const dealerScore = this.calcHandScore(dealerHand);
     const playerScore = this.calcHandScore(playerHand);
 
     const comparatorResult = this.handValuesComparator(dealerScore, playerScore);
 
     if (comparatorResult === 0) {
-      return HandsComparisonValues.Tie;
+      return HandsComparisonValue.Tie;
     }
 
-    return (comparatorResult > 0) ? HandsComparisonValues.Dealer : HandsComparisonValues.Player;
+    return (comparatorResult > 0) ? HandsComparisonValue.Dealer : HandsComparisonValue.Player;
   }
 
   private getHandPossibleValues(hand: Card[]): number[] {
@@ -57,7 +61,7 @@ export class HandCalcService {
       .reduce(((rank1, rank2) => rank1 + rank2), 0);
   }
 
-  private calcHandScore(hand: Card[]): number {
+  calcHandScore(hand: Card[]): number {
     const handValues = this.getHandPossibleValues(hand);
     const handValueSorted = handValues.sort(this.handValuesComparator);
     return handValueSorted.pop();
@@ -84,6 +88,6 @@ export class HandCalcService {
   }
 }
 
-export enum HandsComparisonValues {
+export enum HandsComparisonValue {
   'Dealer', 'Player', 'Tie'
 }

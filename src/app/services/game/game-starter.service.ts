@@ -6,6 +6,7 @@ import {DeckProviderService} from '../deck/deck-provider.service';
 import {CardsDealerService} from './cardsDealer/cards-dealer.service';
 import {GameStatusProviderService} from './game-status-provider.service';
 import {GameStatus} from '../../models/game-status.enum';
+import {Dealer} from '../../models/dealer.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,7 @@ import {GameStatus} from '../../models/game-status.enum';
 export class GameStarterService {
 
   players: Player[];
-  dealer: Player;
+  dealer: Dealer;
   deck: Deck;
 
   constructor(
@@ -25,7 +26,7 @@ export class GameStarterService {
     this.gameStatusProvider.setStatus(GameStatus.Initializing);
   }
 
-  startGame(dealer: Player, players: Player[]) {
+  startGame(dealer: Dealer, players: Player[]) {
     this.players = players;
     this.dealer = dealer;
     this.deck = this.deckProvider.getDeck();

@@ -39,7 +39,7 @@ export class ControlPanelComponent implements OnInit {
       [GameStatus.Initializing]: [],
       [GameStatus.Ready]: ['startGame'],
       [GameStatus['On Going']]: ['hit', 'stand'],
-      [GameStatus.Finished]: ['startGame'],
+      [GameStatus.Over]: ['startGame'],
     };
 
     return statusEnabledButtonsMap[status];

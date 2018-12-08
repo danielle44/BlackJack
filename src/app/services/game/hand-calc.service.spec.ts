@@ -210,7 +210,30 @@ fdescribe('HandCalcService', () => {
     });
   });
 
-  describe(`#compareHands`, () => {
+  describe('#is17OrMore', () => {
+    it('should return true for 17', () => {
+      const queenCard = new Card(Rank.Queen, Suit.Diamonds);
+      const sevenCard = new Card(Rank.Seven, Suit.Hearts);
+
+      expect(service.is17OrMore([queenCard, sevenCard])).toBeTruthy();
+    });
+
+    it('should return true for more than 17', () => {
+      const queenCard = new Card(Rank.Queen, Suit.Diamonds);
+      const kingCard = new Card(Rank.King, Suit.Hearts);
+
+      expect(service.is17OrMore([queenCard, kingCard])).toBeTruthy();
+    });
+
+    it('should return true for less than 17', () => {
+      const queenCard = new Card(Rank.Queen, Suit.Diamonds);
+      const fourCard = new Card(Rank.Four, Suit.Hearts);
+
+      expect(service.is17OrMore([queenCard, fourCard])).toBeFalsy();
+    });
+  });
+
+    describe(`#compareHands`, () => {
     describe('Tie', () => {
       it('should return tie for two black jacks', () => {
         const bjHand = [
