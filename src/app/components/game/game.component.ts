@@ -37,25 +37,15 @@ export class GameComponent implements OnInit {
   }
 
   hit(player) {
-    console.log('hit ', player);
-    console.log('status: ' + this.gameStatusProvider.getStatus());
+    this.game.dealCardToPlayer(player);
+    this.gameOverDetector.detectAndSetStatusIfGameOver(this.dealer, player);
   }
 
   stand(player) {
+    // TODO:
+    // dealer opens his second card, and calc (so on until 17)
     console.log('stand ', player);
     console.log('status: ' + this.gameStatusProvider.getStatus());
   }
 
 }
-
-// if player has 21 - he won
-// otherwise:
-
-// player plays:
-// if 'stay' -> dealer player
-// if 'hit' -> take card, calc (if over 21 - lost) - and again hit or stay. (can hit until 5 cards)
-
-// dealer plays:
-// open closed card. if 21 - dealer won
-// otherwise: if less than 17 - takes card, until gets at least 17 (maximum 5 cards)
-// if got 17 or more - calc best score and compare to player's best score. if tie - no one wins

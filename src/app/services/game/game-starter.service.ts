@@ -31,10 +31,21 @@ export class GameStarterService {
     this.dealer = dealer;
     this.deck = this.deckProvider.getDeck();
 
+    this.emptyPlayersCards();
     this.notifyGameStarted();
     this.cardsDealer.dealCards(this.dealer, this.players, this.deck);
 
     this.gameStatusProvider.setStatus(GameStatus['On Going']);
+  }
+
+  emptyPlayersCards() {
+    this.dealer.cards = [];
+    this.players.forEach(player => player.cards = []);
+  }
+
+  // TODO: should be in another file
+  dealCardToPlayer(player: Player) {
+    this.cardsDealer.dealCard(player, this.deck);
   }
 
   notifyGameStarted() {

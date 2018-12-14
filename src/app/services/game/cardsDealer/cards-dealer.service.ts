@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import {Card} from '../../../models/card.model';
 import {Player} from '../../../models/player.model';
 import {Deck} from '../../../models/deck.model';
 import {Dealer} from '../../../models/dealer.model';
@@ -10,6 +9,11 @@ import {Dealer} from '../../../models/dealer.model';
 export class CardsDealerService {
 
   constructor() { }
+
+  dealCard(player: Player, deck: Deck) {
+    const card = deck.getCard();
+    player.cards.push(card);
+  }
 
   dealCards(dealer: Dealer, players: Player[], deck: Deck) {
     const numOfCards = 2;
@@ -24,11 +28,8 @@ export class CardsDealerService {
   }
 
   private dealCardToEachPlayer(deck, players) {
-    let card: Card;
-
     players.forEach(player => {
-      card = deck.getCard();
-      player.cards.push(card);
+      this.dealCard(player, deck);
     });
   }
 

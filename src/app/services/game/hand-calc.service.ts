@@ -1,6 +1,6 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Card} from '../../models/card.model';
-import {Rank} from '../../models/rank.enum';
+import {getRankValue, Rank} from '../../models/rank.enum';
 
 @Injectable({
   providedIn: 'root'
@@ -54,13 +54,14 @@ export class HandCalcService {
     return [sumWhenAceIs11, sunWhenAllAcesAre1];
   }
 
-  private calcHandNoAcesSum(handNoAces: Card[]) {
+  private calcHandNoAcesSum(handNoAces: Card[]): number {
     return handNoAces
-      .map(card => card.rank)
+      .map(card => getRankValue(card.rank))
       .map(rank => ([Rank.Jack, Rank.Queen, Rank.King].includes(rank) ? 10 : rank))
       .reduce(((rank1, rank2) => rank1 + rank2), 0);
   }
 
+  // TODO: put in another file and add tests
   calcHandScore(hand: Card[]): number {
     const handValues = this.getHandPossibleValues(hand);
     const handValueSorted = handValues.sort(this.handValuesComparator);
