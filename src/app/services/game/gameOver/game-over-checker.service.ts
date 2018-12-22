@@ -32,6 +32,6 @@ export class GameOverCheckerService {
   }
 
   private isDealerMustStop(): boolean {
-    return this.handCalc.is17OrMore(this.dealer.cards) || this.dealer.cards.length >= 5;
+    return this.handCalc.is17OrMore(this.dealer.cards) || this.dealer.cards.length === 5;
   }
 }

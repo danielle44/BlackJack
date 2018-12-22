@@ -5,6 +5,7 @@ import {GameStarterService} from '../../services/game/game-starter.service';
 import {GameStatusProviderService} from '../../services/game/game-status-provider.service';
 import {GameStatus} from '../../models/game-status.enum';
 import {GameOverDetectorService} from '../../services/game/gameOver/game-over-detector.service';
+import {DealerMovesService} from '../../services/game/cardsDealer/dealer-moves.service';
 
 @Component({
   selector: 'app-game',
@@ -18,7 +19,8 @@ export class GameComponent implements OnInit {
 
   constructor(private game: GameStarterService,
               private gameStatusProvider: GameStatusProviderService,
-              private gameOverDetector: GameOverDetectorService
+              private gameOverDetector: GameOverDetectorService,
+              private dealerMoves: DealerMovesService
               ) {
     this.players = [
       new Player('Player1')
@@ -42,10 +44,7 @@ export class GameComponent implements OnInit {
   }
 
   stand(player) {
-    // TODO:
-    // dealer opens his second card, and calc (so on until 17)
-    console.log('stand ', player);
-    console.log('status: ' + this.gameStatusProvider.getStatus());
+    this.dealerMoves.playDealerTurn(this.dealer, player);
   }
 
 }
