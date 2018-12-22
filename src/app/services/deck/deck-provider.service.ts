@@ -8,11 +8,21 @@ import {ArrayShufflerService} from '../utils/array-shuffler.service';
 })
 export class DeckProviderService {
 
+  private deck: Deck;
+
   constructor(private cardsBuilder: CardsBuilderService, private shuffler: ArrayShufflerService) { }
 
-  getDeck(): Deck {
+  initDeck(): void {
     let cards = this.cardsBuilder.buildOrderedCardsArray();
     cards = this.shuffler.shuffle(cards);
-    return new Deck(cards);
+    this.deck = new Deck(cards);
+  }
+
+  getDeck(): Deck {
+    if (!this.deck) {
+      throw Error ('Deck was not init');
+    }
+
+    return this.deck;
   }
 }

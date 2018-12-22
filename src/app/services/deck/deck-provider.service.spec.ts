@@ -31,9 +31,9 @@ describe('DeckProviderService', () => {
     service = TestBed.get(DeckProviderService);
   });
 
-  describe('#getDeck', () => {
+  describe('#getNewDeck', () => {
     it('should return a shuffled deck that contains all the cards', () => {
-      deck = service.getDeck();
+      deck = service.getNewDeck();
       expect(deck.getSize()).toEqual(fakeCardsArray.length);
 
       let deckCards: Card[] = [];
