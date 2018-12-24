@@ -5,7 +5,7 @@ import {Card} from '../../models/card.model';
 import {Rank} from '../../models/rank.enum';
 import {Suit} from '../../models/suit.enum';
 
-fdescribe('HandCalcService', () => {
+describe('HandCalcService', () => {
   let service: HandCalcService;
 
   const twoCard = new Card(Rank.Two, Suit.Clubs);

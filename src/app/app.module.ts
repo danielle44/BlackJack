@@ -9,6 +9,7 @@ import { UpdatesPanelComponent } from './components/updates-panel/updates-panel.
 import { ControlPanelComponent } from './components/control-panel/control-panel.component';
 import { GameComponent } from './components/game/game.component';
 import { GameBoardComponent } from './components/game-board/game-board.component';
+import { TopUpdatesPipe } from './pipes/top-updates.pipe';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { GameBoardComponent } from './components/game-board/game-board.component
     ControlPanelComponent,
     GameComponent,
     GameBoardComponent,
+    TopUpdatesPipe,
   ],
   imports: [
     BrowserModule,
