@@ -9,9 +9,9 @@ export class DealerSecondCardRevealerService {
 
   constructor(private cardsDealer: CardsDealerService) { }
 
-  revealDealerSecondCard(dealer: Dealer) {
+  async revealDealerSecondCard(dealer: Dealer) {
     if (dealer.cards.length === 1) {
-      this.cardsDealer.dealCard(dealer);
+      await this.cardsDealer.dealCard(dealer);
     }
   }
 }

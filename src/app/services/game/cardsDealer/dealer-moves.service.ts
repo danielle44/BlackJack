@@ -14,9 +14,9 @@ export class DealerMovesService {
               private gameOverDetector: GameOverDetectorService,
               private gameOverChecker: GameOverCheckerService) { }
 
-  playDealerTurn(dealer: Dealer, player: Player) {
+  async playDealerTurn(dealer: Dealer, player: Player) {
     while (!this.gameOverChecker.isGameOver(dealer, player)) { // TODO: check in one place the status
-      this.cardsDealer.dealCard(dealer);
+      await this.cardsDealer.dealCard(dealer);
       this.gameOverDetector.detectAndSetStatusIfGameOver(dealer, player);
     }
   }

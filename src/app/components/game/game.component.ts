@@ -33,17 +33,17 @@ export class GameComponent implements OnInit {
     this.gameStatusProvider.setStatus(GameStatus.Ready);
   }
 
-  startGame() {
-    this.game.startGame(this.dealer, this.players);
+  async startGame() {
+    await this.game.startGame(this.dealer, this.players);
     this.gameOverDetector.detectAndSetStatusIfGameOver(this.dealer, this.players[0]);
   }
 
-  hit(player) {
-    this.game.dealCardToPlayer(player);
+  async hit(player) {
+    await this.game.dealCardToPlayer(player);
     this.gameOverDetector.detectAndSetStatusIfGameOver(this.dealer, player);
   }
 
-  stand(player) {
+  async stand(player) {
     this.dealerMoves.playDealerTurn(this.dealer, player);
   }
 

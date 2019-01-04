@@ -24,14 +24,14 @@ export class GameStarterService {
     this.gameStatusProvider.setStatus(GameStatus.Initializing);
   }
 
-  startGame(dealer: Dealer, players: Player[]) {
+  async startGame(dealer: Dealer, players: Player[]) {
     this.players = players;
     this.dealer = dealer;
     this.deckProvider.initDeck();
 
     this.emptyPlayersCards();
     this.notifyGameStarted();
-    this.cardsDealer.dealCards(this.dealer, this.players);
+    await this.cardsDealer.dealFirstCards(this.dealer, this.players);
 
     this.gameStatusProvider.setStatus(GameStatus['On Going']);
   }
@@ -42,8 +42,8 @@ export class GameStarterService {
   }
 
   // TODO: should be in another file
-  dealCardToPlayer(player: Player) {
-    this.cardsDealer.dealCard(player);
+  async dealCardToPlayer(player: Player) {
+    await this.cardsDealer.dealCard(player);
   }
 
   notifyGameStarted() {

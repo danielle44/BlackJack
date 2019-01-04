@@ -7,7 +7,7 @@ import {Update} from '../models/notification.model';
 })
 export class TopUpdatesPipe implements PipeTransform {
 
-  ITEMS_COUNT = 10;
+  ITEMS_COUNT = 20;
 
   constructor() {}
 

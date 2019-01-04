@@ -2,46 +2,42 @@ import { Injectable } from '@angular/core';
 import {Player} from '../../../models/player.model';
 import {Dealer} from '../../../models/dealer.model';
 import {DeckProviderService} from '../../deck/deck-provider.service';
+import {TimeoutService} from '../../utils/timeout.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CardsDealerService {
 
-  constructor(private deckProvider: DeckProviderService) { }
+  constructor(
+    private deckProvider: DeckProviderService,
+    private timeout: TimeoutService
+  ) { }
 
-  dealCard(player: Player) {
+  async dealFirstCards(dealer: Dealer, players: Player[]) {
+    this.dropOldCards(dealer, players);
+
+    await this.dealCardToEachPlayer(players);
+    await this.dealCard(dealer);
+    await this.dealCardToEachPlayer(players);
+  }
+
+  async dealCard(player: Player) {
+    await this.timeout.timeout(500);
+
     const deck = this.deckProvider.getDeck();
     const card = deck.getCard();
     player.cards.push(card);
   }
 
-  dealCards(dealer: Dealer, players: Player[]) {
-    const numOfCards = 2;
-    let isLastTime = false;
-
-    for (let i = 0; i < numOfCards; i++) {
-      isLastTime = (i === numOfCards - 1);
-
-      this.dealCardToEachPlayer(players);
-      this.dealCardToDealer(dealer, !isLastTime);
-    }
+  private dropOldCards(dealer: Dealer, players: Player[]): void {
+    dealer.cards = [];
+    players.forEach(player => player.cards = []);
   }
 
-  private dealCardToEachPlayer(players) {
-    players.forEach(player => {
-      this.dealCard(player);
-    });
-  }
-
-  private dealCardToDealer(dealer, isCardOpen: boolean = true) {
-    const deck = this.deckProvider.getDeck();
-    if (!isCardOpen) {
-      return;
+  private async dealCardToEachPlayer(players) {
+    for (const player of players) {
+      await this.dealCard(player);
     }
-
-    const card = deck.getCard();
-    card.isOpen = isCardOpen;
-    dealer.cards.push(card);
   }
 }

@@ -13,7 +13,7 @@ export class DeckProviderService {
   constructor(private cardsBuilder: CardsBuilderService, private shuffler: ArrayShufflerService) { }
 
   initDeck(): void {
-    let cards = this.cardsBuilder.buildOrderedCardsArray();
+    let cards = this.cardsBuilder.buildOrderedCardsDeck();
     cards = this.shuffler.shuffle(cards);
     this.deck = new Deck(cards);
   }

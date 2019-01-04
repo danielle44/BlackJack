@@ -16,12 +16,12 @@ export class GameOverDetectorService {
               private gameResultCalculator: GameResultCalculatorService,
               private dealerSecondCardRevealer: DealerSecondCardRevealerService) { }
 
-  detectAndSetStatusIfGameOver(dealer: Dealer, player: Player): void {
+  async detectAndSetStatusIfGameOver(dealer: Dealer, player: Player) {
     if (!this.gameOverChecker.isGameOver(dealer, player)) {
       return;
     }
 
-    this.dealerSecondCardRevealer.revealDealerSecondCard(dealer);
+    await this.dealerSecondCardRevealer.revealDealerSecondCard(dealer); // TODO: move to game, and change to sync
     const gameResult = this.gameResultCalculator.calc(dealer, player);
     this.gameOverSetter.set(gameResult);
   }

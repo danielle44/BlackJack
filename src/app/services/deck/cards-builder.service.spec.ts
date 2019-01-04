@@ -20,15 +20,15 @@ describe('CardsBuilderService', () => {
     service = TestBed.get(CardsBuilderService);
   });
 
-  describe(`#buildOrderedCardsArray`, () => {
+  describe(`#buildOrderedCardsDeck`, () => {
 
     it('should return correct amount of cards', () => {
-      cards = service.buildOrderedCardsArray();
+      cards = service.buildOrderedCardsDeck();
       expect(cards.length).toEqual(fakeEnumArray.length * fakeEnumArray.length);
     });
 
     it('should return an ordered array of cards', () => {
-      cards = service.buildOrderedCardsArray();
+      cards = service.buildOrderedCardsDeck();
 
       let currentCard;
       let cardIndex = 0;
